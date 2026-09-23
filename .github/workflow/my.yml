@@ -1,0 +1,11 @@
+name : "workflow"
+
+on : workflow-dispatch
+
+
+jobs:
+  user_active:
+     runs-on : ubuntu-latest
+     steps:
+        - name : "project created"
+          run : echo "workflow is ready"
