@@ -1,0 +1,11 @@
+name : my work
+
+on : workflow_dispatch
+
+
+jobs:
+    user:
+      runs-on : ubuntu-latest
+      steps:
+         - name: flow adedd
+           run: echo "my project has been uploaded"
