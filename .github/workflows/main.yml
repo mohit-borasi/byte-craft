@@ -22,7 +22,7 @@ jobs:
         run:  npm run build
 
       - name: create build
-        uses:  actions/artifact@v4
+        uses:  actions/upload-artifact@v4
         with:
           name: react-build
           path: dist
