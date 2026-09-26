@@ -5,31 +5,30 @@ on: push
 jobs:
   userbuild:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./myaap
+
     steps:
-      - name:  download
+      - name: download
         uses: actions/checkout@v4
 
-      - name: code
-        uses:  actions/setup-node@v4 
+      - name: setup node
+        uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
           cache: npm
-          defaults:
-            run:
-              working-directory: ./myaap
+          cache-dependency-path: myaap/package-lock.json
 
-        steps:
+      - name: install dependencies
+        run: npm ci
 
-      - name: install depedency
-        run:  npm ci
+      - name: run build
+        run: npm run build
 
-      - name: make build
-        run:  npm run build
-
-      - name: create build
-        uses:  actions/upload-artifact@v4
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: react-build
-          path: dist
+          path: myaap/dist
           retention-days: 7
-        
