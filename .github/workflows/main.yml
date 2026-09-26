@@ -1,1 +1,30 @@
+name: work
 
+on: push
+
+jobs:
+  userbuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name:  download
+        uses: actions/checkout@v4
+
+      - name: code
+        uses:  actions/setup-node@v4 
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: install depedency
+        run:  npm ci
+
+      - name: make build
+        run:  npm run build
+
+      - name: create build
+        uses:  actions/artifact@v4
+        with:
+          name: react-build
+          path: dist
+          retention-days: 7
+        
