@@ -1,0 +1,22 @@
+name: workflow
+
+on: push
+
+jobs:
+   check_preference:
+      runs-on: ubuntu-latest
+        steps:
+         - name: download
+           uses: action/checkout@4
+         
+         - name: code
+           uses: action/setup-node@24
+           with:
+             node--version:24
+          
+          - name: install depedency
+            uses: npm ci
+
+          - name: create build
+            run: echo "create a build"
+            
